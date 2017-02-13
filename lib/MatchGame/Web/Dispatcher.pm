@@ -3,6 +3,7 @@ use strict;
 use warnings;
 
 use Amon2::Web::Dispatcher::Lite;
+use MatchGame::Web::ImageLoader;
 
 any '/' => sub {
     my ($c) = @_;
@@ -30,5 +31,22 @@ post '/post' => sub {
     }
     return $c->redirect('/');
 };
+
+any '/game' => sub {
+    my ($c) = @_;
+
+	my $img_list = getImageList()
+    if (my $body = $c->req->param('body')) {
+        $c->db->insert(
+            game => +{
+            	type => 'username',
+                data => $body,
+            }
+        );
+    }
+    return $c->redirect('/');
+    return $c->render( "game.tx" => { game => \@entries, } );
+};
+
 
 1;
