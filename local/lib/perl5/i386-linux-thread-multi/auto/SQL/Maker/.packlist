@@ -1,0 +1,9 @@
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/Condition.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/Plugin/InsertMulti.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/Plugin/InsertOnDuplicate.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/SQLType.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/Select.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/Select/Oracle.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/SelectSet.pm
+/home/neonox/MatchGame/local/lib/perl5/SQL/Maker/Util.pm

@@ -1,0 +1,13 @@
+/home/neonox/MatchGame/local/bin/corelist
+/home/neonox/MatchGame/local/lib/perl5/Module/CoreList.pm
+/home/neonox/MatchGame/local/lib/perl5/Module/CoreList.pod
+/home/neonox/MatchGame/local/lib/perl5/Module/CoreList/TieHashDelta.pm
+/home/neonox/MatchGame/local/lib/perl5/Module/CoreList/Utils.pm
+/usr/bin/corelist
+/usr/share/man/man1/corelist.1
+/usr/share/man/man3/Module::CoreList.3pm
+/usr/share/man/man3/Module::CoreList::Utils.3pm
+/usr/share/perl5/Module/CoreList.pm
+/usr/share/perl5/Module/CoreList.pod
+/usr/share/perl5/Module/CoreList/TieHashDelta.pm
+/usr/share/perl5/Module/CoreList/Utils.pm

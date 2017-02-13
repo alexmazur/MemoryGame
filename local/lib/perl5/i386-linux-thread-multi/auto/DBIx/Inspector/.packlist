@@ -1,0 +1,13 @@
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Column.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Column/Pg.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Driver/Base.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Driver/Pg.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Driver/SQLite.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Driver/mysql.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/ForeignKey.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/ForeignKey/Pg.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Iterator.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Iterator/Null.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Table.pm
+/home/neonox/MatchGame/local/lib/perl5/DBIx/Inspector/Table/Pg.pm
