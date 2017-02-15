@@ -9,6 +9,8 @@ use MatchGame::Web::ViewFunctions;
 sub getImageList
 {
 	my ($class, $context) = @_;
+	
+	warn "Requested image count: $context";
 	 
 	my $imgPath = './static/img/flags/';
 	
@@ -16,7 +18,7 @@ sub getImageList
 	my @flags = glob("./static/img/flags/*.svg");
 	my @return_images;
 	
-	for (0..$context)
+	for (1..$context/2)
 	{
 	    my $idx = int(rand @flags);
 	    

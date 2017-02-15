@@ -1,24 +1,8 @@
-: cascade "include/layout_game.tx"
-
-: override content -> {
-<section>
-
-	<div id="content-box1"><h3>Player <: $name :>:<span id=content-box1>0</span></h3></div>
-	<div id="content-box2"><h3>Player 2</h3><span id=content-box2>0</span></div>
-</p>
-
-<div class="wrapper">
-    <div class="items"></div>
-</div>
-</section>
-
-<script src="js/jquery.3.1.1.min.js"></script>
-<script src="js/script.js"></script>
-
-<script>
 $(function() {
-: $images | mark_raw   
 
+    var img_urls = ["img/deer.png", "img/dolphin.png", "img/kangaroo.png", "img/leopard.png", "img/panther.png", "img/penguin.png", "img/rabbit.png", "img/sheep.png", "img/swan.png", "img/wolf.png", "img/zebra.png", "img/duck.png", "img/deer.png", "img/dolphin.png", "img/kangaroo.png", "img/leopard.png", "img/panther.png", "img/penguin.png", "img/rabbit.png", "img/sheep.png", "img/swan.png", "img/wolf.png", "img/zebra.png", "img/duck.png"];
+
+    //Shuffle js array > http://stackoverflow.com/a/2450976/4991434
     function shuffle(array) {
         var currentIndex = array.length,
             temporaryValue, randomIndex;
@@ -56,15 +40,16 @@ $(function() {
     var count = 0;
 
     function check_level() {
-        if (total_clicks === 8) {
+        if (total_clicks === 10) {
 
             $(".first-svg").removeClass("level");
 
-        } else if (total_clicks === 16) {
+        } else if (total_clicks === 15) {
 
             $(".second-svg").removeClass("level");
 
-        } else if (total_clicks === 24) {
+        } else if (total_clicks === 20) {
+
             $(".third-svg").removeClass("level");
 
         }
@@ -141,7 +126,7 @@ $(function() {
 
 
                 total_clicks++;
-                $(".total_clicks span").text(total_clicks);
+                $(".content-box1").text(total_clicks);
                 check_level();
 
             }, 600);
@@ -215,5 +200,3 @@ $(function() {
 })();
 
 });
-</script>
-: }

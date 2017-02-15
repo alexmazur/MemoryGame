@@ -1,16 +1,21 @@
 : cascade "include/layout.tx"
 
 : override content -> {
+  <div id="login-form">
 
-<form method="post" action="<: uri_for('/post') :>">
-    <input type="text" name="body" />
-    <input type="submit" value="Send" />
-</form>
+    <h3>Create Game</h3>
+    <fieldset>
+      <form action="<: uri_for('/game') :>" method="post">        
+      Cards on the desc: <select name="cards">
+   			<option value="8">8</option>
+   			<option value="16">16</option>
+   			<option value="24">24</option>
+   			<option value="36">36</option>
+		</select> <p><br>
+       <input type="text" required name="name" value="Name" onBlur="if(this.value=='')this.value='Name'" onFocus="if(this.value=='Name')this.value='' ">
+       <input type="submit" value="Create!">
+      </form>
+    </fieldset>
 
-<ul>
-    <: for $entries -> $entry { :>
-    <li><: $entry.entry_id :>. <: $entry.body :></li>
-    <: } :>
-</ul>
-
+  </div> <!-- end login-form -->
 : }
