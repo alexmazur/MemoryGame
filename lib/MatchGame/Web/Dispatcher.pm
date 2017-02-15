@@ -34,8 +34,11 @@ post '/post' => sub {
 
 any '/game' => sub {
     my ($c) = @_;
+	
+	my $img_list = MatchGame::Web::ImageLoader->getImageList(12);
 
-	my $img_list = getImageList()
+# src: https://codepen.io/natewiley/pen/HBrbL
+	
     if (my $body = $c->req->param('body')) {
         $c->db->insert(
             game => +{
@@ -44,8 +47,24 @@ any '/game' => sub {
             }
         );
     }
-    return $c->redirect('/');
-    return $c->render( "game.tx" => { game => \@entries, } );
+    
+    my $images;
+
+    $images = 'var cards = [';	
+    my $id = 1;	
+    for (@{$img_list})
+    {
+       next unless $_;
+
+       $images .= "{\n name: \"a$id\", img: \"$_\", id: $id ,\n},";
+       ++$id;
+    }
+    
+    $images .=	' ];';
+
+    #warn "Images is :".$images;
+     
+    return $c->render( "game.tx" => { images => $images, } );
 };
 
 

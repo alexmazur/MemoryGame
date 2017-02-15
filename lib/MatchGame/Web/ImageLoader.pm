@@ -3,25 +3,22 @@ use strict;
 use warnings;
 use Carp();
 use File::Spec();
-
 use File::ShareDir;
+use MatchGame::Web::ViewFunctions;
 
-sub getImageList 
+sub getImageList
 {
 	my ($class, $context) = @_;
-	
-	my $img_path = File::Spec->catdir($context->base_dir(), 'static/img/flags');
 	 
 	my $imgPath = './static/img/flags/';
 	
-	chdir $imgPath or Carp::croak("Can't chdir: $!");
 	
-	my @flags = glob("*.svg");
+	my @flags = glob("./static/img/flags/*.svg");
 	my @return_images;
 	
-	for (0..$total)
+	for (0..$context)
 	{
-	    my $idx = int(rand @flags) +1;
+	    my $idx = int(rand @flags);
 	    
 	    push @return_images, $flags[$idx];
 	    
@@ -29,6 +26,7 @@ sub getImageList
 	    delete $flags[$idx]; 	    
 	}
 	
+	warn "Got array img:". join ',', @return_images; 
 	return (\@return_images);
 }
 

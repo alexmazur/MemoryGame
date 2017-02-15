@@ -20,11 +20,7 @@ sub db {
             or die "Missing configuration about DBI";
         $c->{db} = MatchGame::DB->new(
             schema       => $schema,
-            connect_info => [@$conf],
-            # I suggest to enable following lines if you are using mysql.
-            # on_connect_do => [
-            #     'SET SESSION sql_mode=STRICT_TRANS_TABLES;',
-            # ],
+            connect_info => [@$conf]
         );
     }
     $c->{db};
