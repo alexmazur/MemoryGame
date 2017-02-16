@@ -101,14 +101,13 @@ $(function() {
             setTimeout(function() {
 
                 if (first === second) {
-
+                	
                     total_clicks = total_clicks - 1;
 
                     $('.clicked').addClass('animated tada matched no-pointer-events');
 
                     //Check if game over
                     check_if_game_over();
-
                 } else {
 
                     $(".front").removeClass("showBack-front");
@@ -124,6 +123,7 @@ $(function() {
 
                 $(".front").css("pointer-events", "auto");
 
+                alert($(".content-box1").text);
 
                 total_clicks++;
                 $(".content-box1").text(total_clicks);

@@ -3,9 +3,8 @@
 : override content -> {
 <section>
 
-	<div id="content-box1"><h3>Player <: $name :>:<span id=content-box1>0</span></h3></div>
-	<div id="content-box2"><h3>Player 2</h3><span id=content-box2>0</span></div>
-</p>
+	<div id="content-box1"><h3>Player <: $name :>:<span>0</span> <p>&star;</p></h3></div>
+	<div id="content-box2"><h3>Player 2</h3><span>0</span><p>&star;</p></div>
 
 <div class="wrapper">
     <div class="items"></div>
@@ -54,7 +53,8 @@ $(function() {
 
     var total_clicks = 0;
     var count = 0;
-
+    var active = 1;
+    
     function check_level() {
         if (total_clicks === 8) {
 
@@ -71,7 +71,8 @@ $(function() {
     }
 
     function check_if_game_over() {
-        if ($(".matched").length === 48) {
+    
+        if ($(".matched").length === img_urls.length) {
 
             setTimeout(function() {
                 alert("Game over");
@@ -87,7 +88,7 @@ $(function() {
     $(".front").click(function(e) {
 
         count++;
-
+		
         //prevent fast click
         if ($(e.target).data('oneclicked') != 'yes') {
             $(e.target).css("pointer-events", "none")
@@ -116,16 +117,30 @@ $(function() {
             setTimeout(function() {
 
                 if (first === second) {
-
+					
+					alert("If block"+active);
                     total_clicks = total_clicks - 1;
 
                     $('.clicked').addClass('animated tada matched no-pointer-events');
 
                     //Check if game over
+                                    
+	                if (active === 1){
+     		           //active = 2;
+		               $("p:first").html("&bigstar;");
+					   $("p:last").html("&star;");
+	                	 
+	              	}else{           
+	              	   //active = 1; 		 
+		               $("p:last").html("&bigstar;");
+		               $("p:first").html("&star;");
+					}
+					
                     check_if_game_over();
 
                 } else {
-
+					
+					alert("Else block"+active);
                     $(".front").removeClass("showBack-front");
                     $(".back").removeClass("showBack-back");
 
@@ -134,14 +149,28 @@ $(function() {
                     setTimeout(function() {
                         $(".clicked").removeClass("clicked shake");
                     }, 500);
+                    
+                    
+                    total_clicks++;
+                    
+                    
+                    if (active === 1){
+     		 		   active = 2;
+		               $("p:first").html("&starf;");
+					   $("p:last").html("&star;");
+	                   $(this, ".content-box1").text(total_clicks);	 
+	              	}else{     
+	              	   active = 1;       		 
+		               $("p:last").html("&starf;");
+		               $("p:first").html("&star;");
+		               $(this, ".content-box2").text(total_clicks);
+					}
 
                 }
 
                 $(".front").css("pointer-events", "auto");
 
-
-                total_clicks++;
-                $(".total_clicks span").text(total_clicks);
+                $("span:first").text(total_clicks);
                 check_level();
 
             }, 600);

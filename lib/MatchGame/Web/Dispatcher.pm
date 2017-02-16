@@ -19,7 +19,7 @@ any '/' => sub {
     return $c->render( "index.tx" => { game => \@entries, } );
 };  
 
-post '/game' => sub {
+any '/game' => sub {
     my ($c) = @_;
 	
 	my $nCards = $c->req->param('cards') || 8;
