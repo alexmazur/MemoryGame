@@ -12,7 +12,8 @@
    			<option value="24">24</option>
    			<option value="36">36</option>
 		</select> <p><br>
-       <input type="text" required name="name" value="Name" onBlur="if(this.value=='')this.value='Name'" onFocus="if(this.value=='Name')this.value='' ">
+       <input type="text" required name="name1" value="First player Name" onBlur="if(this.value=='')this.value='First player Name'" onFocus="if(this.value=='First player Name')this.value='' ">
+       <input type="text" required name="name2" value="Second player Name" onBlur="if(this.value=='')this.value='Second player Name'" onFocus="if(this.value=='Second player Name')this.value='' ">
        <input type="submit" value="Create!">
       </form>
     </fieldset>

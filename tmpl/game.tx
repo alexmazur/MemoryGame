@@ -3,8 +3,8 @@
 : override content -> {
 <section>
 
-	<div id="content-box1">Player <h3><: $name :></h3>: <span id=cp1>0</span> turns<p>&starf;</p>timer: <span id=p0 class=turn>0</span></div>
-	<div id="content-box2">Player <h3> 2 : </h3><span id=cp2>0</span> turns<p>&star;</p>timer: <span id=p1>0</span></div>
+	<div id="content-box1">Player <h3><: $name1 :></h3>: <span id=cp1>0</span> turns<p>&starf;</p>timer: <span id=p0 class=turn>0</span></div>
+	<div id="content-box2">Player <h3> <h3><: $name2 :></h3></h3>: <span id=cp2>0</span> turns<p>&star;</p>timer: <span id=p1>0</span></div>
 
 <div class="wrapper">
     <div class="items"></div>

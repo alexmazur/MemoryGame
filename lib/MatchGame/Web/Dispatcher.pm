@@ -23,7 +23,8 @@ any '/game' => sub {
     my ($c) = @_;
 	
 	my $nCards = $c->req->param('cards') || 8;
-	my $pName  = $c->req->param('name') || 'unknown';
+	my $pName1  = $c->req->param('name1') || 'unknown';
+	my $pName2  = $c->req->param('name2') || 'unknown';
 	
 	my $started = $c->db->search(
         game => {
@@ -34,20 +35,27 @@ any '/game' => sub {
     
     
     
-    if ($nCards and $pName ) {
-        $c->db->insert(
-            game => +{
+    if ($nCards and $pName1 and $pName2 ) {
+        $c->db->bulk_insert(
+            game => [ {
             	type => 'name',
-                data => $pName,
-            }
-        );
-        
-        $c->db->insert(
-            game => +{
+                data => $pName1,
+            },
+            {
+            	type => 'name1',
+                data => $pName2,
+            },
+            {
             	type => 'cards',
                 data => $nCards,
-            }
+            },
+            {
+            	type => 'started',
+                data => 1,
+            },
+            ]
         );
+        
         
         $c->db->insert(
             game => +{
@@ -77,7 +85,7 @@ any '/game' => sub {
     $images .=	' ];';
     
     
-    return $c->render( "game.tx" => { images => $images, name => $pName, cards_number => $nCards } );
+    return $c->render( "game.tx" => { images => $images, name1 => $pName1, name2 => $pName2, cards_number => $nCards } );
 
 };
 
