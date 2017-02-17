@@ -39,12 +39,14 @@ header h2 {
   font-size: 2.8em;
   font-weight: 700;
   color: #fff; }
-  @media screen and (max-width: 650px) {
+
+@media screen and (max-width: 650px) {
     header h2 {
       font-size: 2.2em; } }
-  header h2 a {
+    header h2 a {
     color: #fff;
     font-weight: 700; }
+    
 header p {
   display: block;
   text-align: center;
@@ -167,7 +169,7 @@ section {
     -webkit-box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
     box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.8);
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
@@ -196,7 +198,7 @@ section {
         width: 90px;
         height: 105px; } }
     section .front:hover, section .back:hover {
-      background: rgba(128, 128, 128, 0.6); }
+      background: rgba(128, 128, 128, 0.8); }
   section .back {
     background: rgba(26, 37, 47, 0.6);
     transform: rotateY(-180deg);
@@ -204,7 +206,7 @@ section {
     z-index: 1;
     text-indent: 1px; }
   section .back:hover {
-      background: rgba(26, 37, 47, 0.6); }
+      background: rgba(26, 37, 47, 0.8); }
   section .image {
     position: absolute;
     top: 50%;
@@ -232,7 +234,7 @@ section {
     transform: rotateY(0deg);
     z-index: 2; }
   section .matched {
-    background: rgba(26, 37, 47, 0.6);
+    background: rgba(255,215,0, 0.7);
     -webkit-box-shadow: 4px 4px 0px 0px rgba(26, 37, 47, 0.2);
     box-shadow: 4px 4px 0px 0px rgba(26, 37, 47, 0.2);
     pointer-events: none;
