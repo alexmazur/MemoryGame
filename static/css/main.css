@@ -16,6 +16,10 @@ body {
   margin: 0;
 }
 
+span{
+  font-family: 'Menlo', 'Monaco', Courier, monospace;
+  font-size: 14px;
+}
 h3 {
   margin: 0;
 }

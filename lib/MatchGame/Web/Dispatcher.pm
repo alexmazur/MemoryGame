@@ -25,11 +25,19 @@ any '/game' => sub {
 	my $nCards = $c->req->param('cards') || 8;
 	my $pName  = $c->req->param('name') || 'unknown';
 	
-	
-    if (my $body = $c->req->param('body')) {
+	my $started = $c->db->search(
+        game => {
+        }, {
+            type => 'started',
+        }
+    );
+    
+    
+    
+    if ($nCards and $pName ) {
         $c->db->insert(
             game => +{
-            	type => 'username',
+            	type => 'name',
                 data => $pName,
             }
         );
@@ -38,6 +46,13 @@ any '/game' => sub {
             game => +{
             	type => 'cards',
                 data => $nCards,
+            }
+        );
+        
+        $c->db->insert(
+            game => +{
+            	type => 'started',
+                data => 1,
             }
         );
     }
@@ -65,5 +80,16 @@ any '/game' => sub {
     return $c->render( "game.tx" => { images => $images, name => $pName, cards_number => $nCards } );
 
 };
+
+post '/setpush' => sub {
+    my ($c, $args) = @_;
+	
+	warn Dumper( \$c->req->{'amon2.body_parameters'} );
+	#my $body = $c->req->param('amon2.body_parameters');
+	#warn "Got reply from game ".join ',', %{ $body };	
+    
+    return;
+};  
+
 
 1;

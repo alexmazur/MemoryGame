@@ -3,8 +3,8 @@
 : override content -> {
 <section>
 
-	<div id="content-box1"><h3>Player <: $name :>:<span>0</span> <p>&star;</p></h3></div>
-	<div id="content-box2"><h3>Player 2</h3><span>0</span><p>&star;</p></div>
+	<div id="content-box1">Player <h3><: $name :></h3>: <span id=cp1>0</span> turns<p>&starf;</p>timer: <span id=p0 class=turn>0</span></div>
+	<div id="content-box2">Player <h3> 2 : </h3><span id=cp2>0</span> turns<p>&star;</p>timer: <span id=p1>0</span></div>
 
 <div class="wrapper">
     <div class="items"></div>
@@ -15,6 +15,7 @@
 <script src="js/script.js"></script>
 
 <script>
+
 $(function() {
 : $images | mark_raw   
 
@@ -54,6 +55,7 @@ $(function() {
     var total_clicks = 0;
     var count = 0;
     var active = 1;
+    var request;
     
     function check_level() {
         if (total_clicks === 8) {
@@ -71,9 +73,17 @@ $(function() {
     }
 
     function check_if_game_over() {
-    
-        if ($(".matched").length === img_urls.length) {
+    	
+    	//alert(img_urls.length);
+    	//alert($(".matched").length);
+        if ($(".matched").length/2 === img_urls.length) {
 
+			request = $.ajax({
+        		url: "/setpush",
+        		type: "post",
+        		data: "winner="+rem[turn]+"; user=AAA;"
+    		});
+    				
             setTimeout(function() {
                 alert("Game over");
             }, 1200);
@@ -84,6 +94,27 @@ $(function() {
 
         }
     }
+
+  var turn=0,rem=[0];rem.push(rem[0]) //rem:remaining time
+  
+  var pad=function(x){return('0'+x).slice(-2)}
+  
+  var fmt=function(t){var h=Math.floor(t/3600),m=Math.floor(t/60)%60,s=t%60;return(h?h+':'+pad(m):m)+':'+pad(s)}
+  var els=[];for(var i=0;i<2;i++)els.push(document.getElementById('p'+i))
+  var upd=function(){
+    rem[turn]++;for(var i=0;i<2;i++)els[i].textContent=fmt(rem[i])
+    if(rem[turn]<=0){var l=els[turn].classList;l.remove('turn');l.add('loser');clearInterval(iid)}
+  }
+  var switchTurn=function(){
+    if(!iid)return
+    els[turn].classList.remove('turn');turn=1-turn
+    els[turn].classList.add('turn');rem[turn]+=2 //add 2 seconds per move
+  }
+  //document.body.onmousedown=function(){switchTurn();return!1}
+  //document.body.onkeydown=function(e){if(e.keyCode===32){switchTurn();return!1}}
+  els[0].classList.add('turn')
+  var iid=setInterval(upd,1000) //interval id
+  
 
     $(".front").click(function(e) {
 
@@ -117,13 +148,14 @@ $(function() {
             setTimeout(function() {
 
                 if (first === second) {
+                // matching cards
+                	
+                	if (total_clicks > 0 ){
+                    	total_clicks = total_clicks - 1;
+					}
 					
-					alert("If block"+active);
-                    total_clicks = total_clicks - 1;
-
                     $('.clicked').addClass('animated tada matched no-pointer-events');
 
-                    //Check if game over
                                     
 	                if (active === 1){
      		           //active = 2;
@@ -136,11 +168,12 @@ $(function() {
 		               $("p:first").html("&star;");
 					}
 					
+					//Check if game over
                     check_if_game_over();
 
                 } else {
+    				//Changing active user
 					
-					alert("Else block"+active);
                     $(".front").removeClass("showBack-front");
                     $(".back").removeClass("showBack-back");
 
@@ -151,26 +184,31 @@ $(function() {
                     }, 500);
                     
                     
+                    total_clicks = $("#cp"+active).text();
+                    
                     total_clicks++;
                     
                     
                     if (active === 1){
      		 		   active = 2;
-		               $("p:first").html("&starf;");
-					   $("p:last").html("&star;");
-	                   $(this, ".content-box1").text(total_clicks);	 
-	              	}else{     
-	              	   active = 1;       		 
-		               $("p:last").html("&starf;");
+     		 		   switchTurn();
 		               $("p:first").html("&star;");
-		               $(this, ".content-box2").text(total_clicks);
+					   $("p:last").html("&starf;");
+
+	                   $("#cp1").text(total_clicks); 
+	              	}else{     
+	              	   active = 1;
+	              	   switchTurn();       		 
+		               $("p:last").html("&star;");
+		               $("p:first").html("&starf;");
+
+	                   $("#cp2").text(total_clicks); 
 					}
 
                 }
 
                 $(".front").css("pointer-events", "auto");
 
-                $("span:first").text(total_clicks);
                 check_level();
 
             }, 600);
@@ -179,6 +217,7 @@ $(function() {
 
         return false;
     });
+
 
 // Limit scope pollution from any deprecated API
 (function() {
