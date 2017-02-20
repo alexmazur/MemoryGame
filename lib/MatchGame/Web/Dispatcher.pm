@@ -65,7 +65,8 @@ any '/game' => sub {
         );
     }
         
-    my $img_list = MatchGame::Web::ImageLoader->getImageList($nCards);
+    my $Imgs = MatchGame::Web::ImageLoader->new();
+    my $img_list = $Imgs->getImageList($nCards);
 
 	# 	src: https://codepen.io/natewiley/pen/HBrbL
     

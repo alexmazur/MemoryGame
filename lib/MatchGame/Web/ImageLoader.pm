@@ -6,11 +6,23 @@ use File::Spec();
 use File::ShareDir;
 use MatchGame::Web::ViewFunctions;
 
+our $VERSION = '0.02';
+
+sub new {
+    my $class = shift;
+    my %opts  = @_;
+    
+    my $self = {
+    	%opts
+    };
+    
+    bless $self, $class;
+    return $self;
+}
+
 sub getImageList
 {
-	my ($class, $context) = @_;
-	
-	warn "Requested image count: $context";
+	my ($self, $context) = @_;
 	 
 	my $imgPath = './static/img/flags/';
 	
@@ -25,7 +37,8 @@ sub getImageList
 	    push @return_images, $flags[$idx];
 	    
 	    # Eleminate duplicates
-	    delete $flags[$idx]; 	    
+	    splice (@flags, $idx, 1);
+	    #delete $flags[$idx]; 	    
 	}
 	
 	warn "Got array img:". join ',', @return_images; 

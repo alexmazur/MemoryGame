@@ -3,8 +3,13 @@
 : override content -> {
 <section>
 
-	<div id="content-box1">Player <h3><: $name1 :></h3>: <span id=cp1>0</span> turns<p>&starf;</p>timer: <span id=p0 class=turn>0</span></div>
-	<div id="content-box2">Player <h3> <h3><: $name2 :></h3></h3>: <span id=cp2>0</span> turns<p>&star;</p>timer: <span id=p1>0</span></div>
+	<div id="content-box1">
+		Player <h3><: $name1 :></h3><span id=cp1>0</span> turns<br><h4></h4><br><h2><span id=p0 class=turn>0</span></h2>
+	</div>
+	
+	<div id="content-box2">
+		Player <h3><: $name2 :></h3><span id=cp2>0</span> turns<br><h4></h4> <br><h2><span id=p1>0</span></h2>
+	</div>
 
 <div class="wrapper">
     <div class="items"></div>
@@ -19,6 +24,12 @@
 $(function() {
 : $images | mark_raw   
 
+$("h3:last").css("background-color", ""); 
+$("h3:first").css("width", "130px");     
+$("h3:first").css("background-color", "#fff2cc");   
+
+
+     		           
     function shuffle(array) {
         var currentIndex = array.length,
             temporaryValue, randomIndex;
@@ -95,9 +106,9 @@ $(function() {
         }
     }
 
-  var turn=0,rem=[0];rem.push(rem[0]) //rem:remaining time
+var turn=0,rem=[0];rem.push(rem[0]) //rem:remaining time
   
-  var pad=function(x){return('0'+x).slice(-2)}
+var pad=function(x){return('0'+x).slice(-2)}
   
   var fmt=function(t){var h=Math.floor(t/3600),m=Math.floor(t/60)%60,s=t%60;return(h?h+':'+pad(m):m)+':'+pad(s)}
   var els=[];for(var i=0;i<2;i++)els.push(document.getElementById('p'+i))
@@ -116,6 +127,15 @@ $(function() {
   var iid=setInterval(upd,1000) //interval id
   
 
+	var setImportantStyle = function(element, attributeName, value) {
+	    var style = element.attr('style');
+      if (style === undefined) return;
+	    var re = new RegExp(attributeName + ": .* !important;", "g");
+	    style = style.replace(re, "");
+	    element.css('cssText', attributeName + ': ' + value + ' !important;' + style);
+	}
+	
+	
     $(".front").click(function(e) {
 
         count++;
@@ -159,13 +179,16 @@ $(function() {
                                     
 	                if (active === 1){
      		           //active = 2;
-		               $("p:first").html("&bigstar;");
-					   $("p:last").html("&star;");
-	                	 
+     		           $('h4:first').prepend('<img id="theImg" src="/static/img/star-silver-icon.png" />')
+     		           $("h3:last").css("background-color", ""); 
+     		           $("h3:first").css("width", "130px");     
+     		           $("h3:first").css("background-color", "#fff2cc");           	 
 	              	}else{           
-	              	   //active = 1; 		 
-		               $("p:last").html("&bigstar;");
-		               $("p:first").html("&star;");
+	              	   //active = 1;
+	              	   $('h4:last').prepend('<img id="theImg" src="/static/img/star-silver-icon.png" />')
+     		           $("h3:first").css("background-color", ""); 
+     		           $("h3:last").css("width", "130px");
+     		           $("h3:last").css("background-color", "#fff2cc");
 					}
 					
 					//Check if game over
@@ -192,15 +215,20 @@ $(function() {
                     if (active === 1){
      		 		   active = 2;
      		 		   switchTurn();
-		               $("p:first").html("&star;");
-					   $("p:last").html("&starf;");
+     		           $("h3:first").css("background-color", ""); 
+     		           $("h3:last").css("width", "130px");
+     		           $("h3:last").css("background-color", "#fff2cc");
 
 	                   $("#cp1").text(total_clicks); 
 	              	}else{     
 	              	   active = 1;
-	              	   switchTurn();       		 
-		               $("p:last").html("&star;");
-		               $("p:first").html("&starf;");
+	              	   switchTurn();   
+	              	   $("h3:first").css("width", "130px");
+     		           $("h3:first").css("background-color", "#fff2cc"); 
+     		           $("h3:last").css("background-color", "");
+     		 		       		 
+		               //$("p:last").html("&star;");
+		               //$("p:first").html("&starf;");
 
 	                   $("#cp2").text(total_clicks); 
 					}

@@ -8,6 +8,7 @@ use lib File::Spec->catdir(dirname(__FILE__), '../lib');
 use lib File::Spec->catdir(dirname(__FILE__), '../local/lib/perl5');
 use Plack::Builder;
 use Sys::Hostname;
+use Getopt::Long;
 
 use MatchGame::Web;
 use MatchGame;
@@ -25,12 +26,14 @@ my $app = builder {
 
     MatchGame::Web->to_app();
 };
-unless (caller) {
+
+unless (caller) {	
+
     my $port        = 8080;
-    my $host        = hostname || 127.0.0.1;
+    my $host        = hostname || '127.0.0.1';
     my $max_workers = 4;
 
-    require Getopt::Long;
+    #require Getopt::Long;
     require Plack::Loader;
     my $p = Getopt::Long::Parser->new(
         config => [qw(posix_default no_ignore_case auto_help)]
